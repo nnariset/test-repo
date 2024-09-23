@@ -1,16 +1,19 @@
+version: 0.2
+
 phases:
   install:
     commands:
       - echo Installing dependencies...
-      - python3 -m venv venv
-      - source venv/bin/activate
-      - pip install -r requirements.txt
+      - python3 -m venv venv  # Create a virtual environment
+      - source venv/bin/activate  # Activate the virtual environment
+      - pip install -r requirements.txt  # Install dependencies
+
   build:
     commands:
       - echo Starting the Flask app with Gunicorn...
-      - source venv/bin/activate
-      - scripts/start_server.sh
+      - source venv/bin/activate  # Reactivate the virtual environment
+      - scripts/start_server.sh  # Run the server startup script
 
-  artifacts:
-     files:
-        - '**/*'    # Include all files generated in the build
+artifacts:
+  files:
+    - '**/*' 
