@@ -5,10 +5,10 @@ phases:
     commands:
       - echo Installing dependencies...
       - pip install -r requirements.txt
+
   build:
     commands:
       - echo Building the Python app...
-      - python app.py
-artifacts:
-  files:
-    - '**/*'
+      - nohup python app.py &  # Run Flask in the background
+      - sleep 5  # Wait for Flask to start
+      - echo Flask started in the background
