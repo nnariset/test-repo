@@ -1,25 +1,16 @@
 #!/bin/bash
-# Start the Flask web server
 
-# Navigate to the application directory
-cd /var/www/html
+echo "Starting Gunicorn server..."
 
-# Check if the server is already running and stop it
-if pgrep -f "app.py" > /dev/null
-then
-    echo "Stopping existing Flask application..."
-    pkill -f "app.py"
-fi
+# Replace 'app' with the correct Flask app entry point if different
+# --bind 0.0.0.0:8000 specifies that Gunicorn will listen on port 8000
+gunicorn --bind 0.0.0.0:8000 app:app
 
-# Start the Flask application in the background and log output
-echo "Starting Flask application..."
-nohup python3 app.py > flask_app.log 2>&1 &
-
-# Verify if the application started successfully
-if pgrep -f "app.py" > /dev/null
-then
-    echo "Flask application started successfully."
-else
-    echo "Failed to start Flask application."
+# Capture any failure and log it
+if [ $? -ne 0 ]; then
+    echo "Failed to start Gunicorn server." >&2
     exit 1
+else
+    echo "Gunicorn server started successfully."
 fi
+
