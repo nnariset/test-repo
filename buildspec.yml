@@ -12,3 +12,7 @@ phases:
       - nohup python app.py &  # Run Flask in the background
       - sleep 5  # Wait for Flask to start
       - echo Flask started in the background
+
+artifacts:
+  files:
+    - '**/*'    # Include all files generated in the build
