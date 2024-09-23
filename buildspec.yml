@@ -7,11 +7,20 @@ phases:
       - python3 -m venv venv
       - source venv/bin/activate 
       - pip install -r requirements.txt
+
   build:
     commands:
+<<<<<<< HEAD
       - echo Starting the Flask app with Gunicorn...
       - source venv/bin/activate
       - scripts/start_server.sh
+=======
+      - echo Building the Python app...
+      - nohup python app.py &  # Run Flask in the background
+      - sleep 5  # Wait for Flask to start
+      - echo Flask started in the background
+
+>>>>>>> ebae7ef43bf7c50a4637016b05cf5cb6a7387d34
 artifacts:
   files:
-    - '**/*'
+    - '**/*'    # Include all files generated in the build
