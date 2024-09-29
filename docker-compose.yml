@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  app:
+    image: flask-app
+    ports:
+      - "5000:5000"
+    networks:
+      - my-nw
+
+networks:
+  my-nw:
+    driver: bridge
