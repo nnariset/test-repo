@@ -1,12 +1,13 @@
-version: "3.8"
+version: '3'
 services:
-  app:
-    image: flask-app
+  web:
+    build: .
     ports:
       - "5000:5000"
+    volumes:
+      - .:/app
     networks:
-      - my-nw
+      - mynetwork
 
 networks:
-  my-nw:
-    driver: bridge
+  mynetwork:
